@@ -2,7 +2,8 @@ import { DataTypes, Model } from 'sequelize';
 import db from '.';
 
 class UsersModel extends Model {
-  public userName!: string;
+  public id!: number;
+  public username!: string;
   public role!: string;
   public email!: string;
   public password!: string;
@@ -11,7 +12,12 @@ class UsersModel extends Model {
 UsersModel.init(
   {
     // ... Campos
-    userName: {
+    id: {
+      type: DataTypes.NUMBER,
+      primaryKey: true,
+      allowNull: false,
+    },
+    username: {
       type: DataTypes.STRING,
       allowNull: false,
     },
