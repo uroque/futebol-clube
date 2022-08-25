@@ -1,6 +1,6 @@
 import 'dotenv/config';
 import { Response, NextFunction } from 'express';
-import { verify } from 'jsonwebtoken';
+import { verify, Secret } from 'jsonwebtoken';
 import { IRequest } from '../interfaces';
 
 const authToken = async (req: IRequest, res: Response, next: NextFunction) => {
@@ -11,15 +11,15 @@ const authToken = async (req: IRequest, res: Response, next: NextFunction) => {
       return res.status(401).json({ message: 'Token not found' });
     }
 
-    const jwtSecret = process.env.JWT_SECRET || 'jwt_secret';
+    const jwtSecret: Secret = process.env.JWT_SECRET as string;
 
     const decoded = verify(token, jwtSecret);
 
-    req.auth = decoded;
+    // if (decoded) return res.status(200).json({ role })
     next();
   } catch (e) {
     return res.status(401).json({ message: 'Expired or invalid token' });
   }
 };
 
-exports = { authToken };
+export default authToken;

@@ -10,8 +10,6 @@ export default class LoginService {
 
     const user = await UsersModel.findOne({ where: { email } });
 
-    console.log(user);
-
     if (!user) return false;
 
     if (!compareSync(password, user.password)) return false;
