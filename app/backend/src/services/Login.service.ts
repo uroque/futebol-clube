@@ -14,10 +14,10 @@ export default class LoginService {
 
     if (!compareSync(password, user.password)) return false;
 
-    const env = process.env.JWT_SECRET || 'jwt_secret';
+    const env = process.env.JWT_SECRET as string;
 
-    const token = sign({ username: user.username }, env, {
-      expiresIn: '30m',
+    const token = sign({ id: user.id, role: user.role }, env, {
+      expiresIn: '60m',
       algorithm: 'HS256',
     });
 

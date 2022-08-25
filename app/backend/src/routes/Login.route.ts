@@ -10,8 +10,6 @@ const router = express.Router();
 
 router.post('/', validator(LoginSchemas.joiLoginSchemas), LoginController.login);
 
-router.get('/validate', authToken);
-
-// router.post('/', emptyEmail, emptyPassword, validator(LoginSchemas), LoginController.Login);
+router.get('/validate', authToken, LoginController.getRole);
 
 export default router;

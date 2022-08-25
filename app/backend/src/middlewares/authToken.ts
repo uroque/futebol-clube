@@ -4,6 +4,8 @@ import { verify, Secret } from 'jsonwebtoken';
 import { IRequest } from '../interfaces';
 
 const authToken = async (req: IRequest, res: Response, next: NextFunction) => {
+  console.log('chegay');
+
   try {
     const token = req.headers.authorization;
 
@@ -15,7 +17,8 @@ const authToken = async (req: IRequest, res: Response, next: NextFunction) => {
 
     const decoded = verify(token, jwtSecret);
 
-    // if (decoded) return res.status(200).json({ role })
+    req.body.role = decoded;
+
     next();
   } catch (e) {
     return res.status(401).json({ message: 'Expired or invalid token' });

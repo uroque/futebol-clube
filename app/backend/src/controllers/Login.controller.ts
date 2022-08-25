@@ -16,4 +16,14 @@ export default class LoginController {
       next(err);
     }
   };
+
+  static getRole = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const { role } = req.body.role;
+
+      return res.status(200).json({ role });
+    } catch (err) {
+      next(err);
+    }
+  };
 }
