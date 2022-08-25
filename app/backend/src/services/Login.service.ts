@@ -17,7 +17,7 @@ export default class LoginService {
     const env = process.env.JWT_SECRET as string;
 
     const token = sign({ id: user.id, role: user.role }, env, {
-      expiresIn: '60m',
+      expiresIn: '10d',
       algorithm: 'HS256',
     });
 
