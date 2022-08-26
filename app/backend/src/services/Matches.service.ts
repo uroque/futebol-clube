@@ -1,5 +1,6 @@
 import TeamsModel from '../database/models/Teams.model';
 import MatchesModel from '../database/models/Matches.model';
+import { INewMatch } from '../interfaces';
 
 export default class MatchesService {
   static getAll = async (): Promise<object> => {
@@ -27,4 +28,16 @@ export default class MatchesService {
     return createMatch;
   };
 
+  static updateProgress = async (id: number): Promise<object> => {
+    const updatedProgress = await MatchesModel.update(
+      {
+        inProgress: false,
+      },
+      {
+        where: { id },
+      },
+    );
+
+    return updatedProgress;
+  };
 }
