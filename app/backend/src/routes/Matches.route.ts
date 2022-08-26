@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get('/', MatchesController.getAll);
 
-router.post('/', MatchesController.create);
+router.post('/', MatchesController.sameTeam, MatchesController.create);
 
 router.patch('/:id/finish', MatchesController.updateProgress);
 
