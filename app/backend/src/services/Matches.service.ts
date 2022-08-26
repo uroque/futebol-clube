@@ -20,4 +20,11 @@ export default class MatchesService {
 
     return matches;
   };
+
+  static create = async (newMatch: INewMatch): Promise<object> => {
+    const createMatch = await MatchesModel.create(newMatch);
+
+    return createMatch;
+  };
+
 }
