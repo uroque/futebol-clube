@@ -13,3 +13,10 @@ export interface ILogin {
 export interface IRequest extends Request {
   auth?: JwtPayload | string;
 }
+
+export interface INewMatch {
+  homeTeam: number;
+  awayTeam: number;
+  homeTeamGoals: number;
+  awayTeamGoals: number;
+}
