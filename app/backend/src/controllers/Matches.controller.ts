@@ -24,4 +24,16 @@ export default class MatchesController {
       next(err);
     }
   };
+
+  static updateProgress = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const { id } = req.params;
+
+      MatchesService.updateProgress(+id);
+
+      return res.status(200).json({ message: 'Finished' });
+    } catch (err) {
+      next(err);
+    }
+  };
 }
