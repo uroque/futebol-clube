@@ -5,4 +5,5 @@ const router = express.Router();
 
 router.get('/', MatchesController.getAll);
 
+router.post('/', MatchesController.create);
 export default router;
