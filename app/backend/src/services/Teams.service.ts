@@ -14,4 +14,26 @@ export default class TeamsService {
 
     return false;
   };
+
+  static teamsExists = async (homeTeam: number, awayTeam: number): Promise<boolean> => {
+    const homeExists = await TeamsModel.findOne(
+      {
+        where: { id: homeTeam },
+      },
+    );
+
+    const awayExists = await TeamsModel.findOne(
+      {
+        where: { id: awayTeam },
+      },
+    );
+
+    if (!homeExists || !awayExists) return false;
+
+    console.log('homeExists', homeExists);
+
+    console.log('awayExists', awayExists);
+
+    return true;
+  };
 }
