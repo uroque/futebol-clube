@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import MatchesService from '../services/Matches.service';
+import TeamsService from '../services/Teams.service';
 
 export default class MatchesController {
   static getAll = async (_req: Request, res: Response, next: NextFunction) => {
@@ -11,11 +12,20 @@ export default class MatchesController {
       next(err);
     }
   };
+
   static create = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const newMatch = req.body;
 
       newMatch.inProgress = true;
+
+      const teamsExists = await TeamsService.teamsExists(newMatch.homeTeam, newMatch.awayTeam);
+
+      if (!teamsExists) {
+        return res.status(404).json({ message: 'There is no team with such id!' });
+      }
+
+      console.log('no controller', teamsExists);
 
       const createMatch = await MatchesService.create(newMatch);
 
