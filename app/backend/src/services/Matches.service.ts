@@ -40,4 +40,21 @@ export default class MatchesService {
 
     return updatedProgress;
   };
+
+  static updateScore = async (
+    id: number,
+    homeTeamGoals: number,
+    awayTeamGoals: number,
+  ): Promise<object> => {
+    const updatedScore = await MatchesModel.update(
+      {
+        homeTeamGoals,
+        awayTeamGoals,
+      },
+      {
+        where: { id },
+      },
+    );
+    return updatedScore;
+  };
 }
