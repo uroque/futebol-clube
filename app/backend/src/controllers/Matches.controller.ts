@@ -61,4 +61,17 @@ export default class MatchesController {
       next(err);
     }
   };
+
+  static updateScore = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const { id } = req.params;
+      const { homeTeamGoals, awayTeamGoals } = req.body;
+
+      MatchesService.updateScore(+id, +homeTeamGoals, +awayTeamGoals);
+
+      return res.status(200).json({ message: 'Finished' });
+    } catch (err) {
+      next(err);
+    }
+  };
 }
