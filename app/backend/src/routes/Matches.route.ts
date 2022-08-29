@@ -10,4 +10,6 @@ router.post('/', authToken, MatchesController.sameTeam, MatchesController.create
 
 router.patch('/:id/finish', MatchesController.updateProgress);
 
+router.patch('/:id', MatchesController.updateScore);
+
 export default router;
