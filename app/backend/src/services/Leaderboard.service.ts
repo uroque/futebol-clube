@@ -120,4 +120,29 @@ export default class LeaderboardService {
 
     return this.sortTable(results);
   };
+
+  static getLeaderboard = async () => {
+    const teams = await TeamsModel.findAll();
+    const matches = await MatchesService.getFinishedMatches();
+
+    const results: ILeaderboardTeam[] = [];
+
+    teams.forEach((team) => {
+      const homeResult = matches
+        .filter((match) => match.homeTeam === team.id)
+        .map((match) => ({ goalsFavor: match.homeTeamGoals, goalsOwn: match.awayTeamGoals }));
+
+      const awayResult = matches
+        .filter((match) => match.awayTeam === team.id)
+        .map((match) => ({ goalsFavor: match.awayTeamGoals, goalsOwn: match.homeTeamGoals }));
+
+      const goalsResult = [...homeResult, ...awayResult];
+
+      const leaderboard = this.createLeaderboard(goalsResult, team.teamName);
+
+      results.push(leaderboard);
+    });
+
+    return this.sortTable(results);
+  };
 }
