@@ -15,30 +15,26 @@ const { expect } = chai;
 
 describe('Matches', () => {
   describe('getAll', () => {
-    it('should return status 200', async () => {
+    beforeEach(() => {
       sinon.stub(MatchesModel, 'findAll').resolves([]);
+    });
 
+    afterEach(() => {
+      sinon.restore();
+    });
+
+    it('should return status 200', async () => {
       const response = await chai.request(app)
         .get('/matches');
 
       expect(response.status).to.be.equal(200);
-
-      sinon.restore();
     })
 
     it('should return matches', async () => {
-      sinon.stub(MatchesModel, 'findAll').resolves([]);
-
       const response = await chai.request(app)
         .get('matches');
 
       expect(response.body).to.be.deep.equal([]);  
-
-      sinon.restore();
     })
   })
-
-  it('Seu sub-teste', () => {
-    expect(false).to.be.eq(true);
-  });
 });
