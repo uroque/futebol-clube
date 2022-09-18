@@ -1,4 +1,6 @@
 import TeamsModel from '../database/models/Teams.model';
+import MatchesModel from '../database/models/Matches.model';
+import { IHomeTeamMatches } from '../interfaces';
 
 export default class TeamsService {
   static getAll = async (): Promise<object> => {
@@ -35,5 +37,20 @@ export default class TeamsService {
     console.log('awayExists', awayExists);
 
     return true;
+  };
+
+  static getHomeTeamsFinishedMatches = async (): Promise<IHomeTeamMatches[]> => {
+    const finishedMatches = await TeamsModel.findAll(
+      {
+        include:
+          {
+            model: MatchesModel,
+            as: 'teamHome',
+            where: { inProgress: false },
+          },
+      },
+    );
+
+    return finishedMatches;
   };
 }
