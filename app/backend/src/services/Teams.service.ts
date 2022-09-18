@@ -30,10 +30,6 @@ export default class TeamsService {
 
     if (!homeExists || !awayExists) return false;
 
-    console.log('homeExists', homeExists);
-
-    console.log('awayExists', awayExists);
-
     return true;
   };
 }

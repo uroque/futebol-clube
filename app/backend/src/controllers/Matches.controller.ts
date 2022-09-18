@@ -25,8 +25,6 @@ export default class MatchesController {
         return res.status(404).json({ message: 'There is no team with such id!' });
       }
 
-      console.log('no controller', teamsExists);
-
       const createMatch = await MatchesService.create(newMatch);
 
       return res.status(201).json(createMatch);
