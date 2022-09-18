@@ -32,7 +32,7 @@ describe('Matches', () => {
 
     it('should return matches', async () => {
       const response = await chai.request(app)
-        .get('matches');
+        .get('/matches');
 
       expect(response.body).to.be.deep.equal([]);  
     })
