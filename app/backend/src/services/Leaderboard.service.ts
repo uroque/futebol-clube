@@ -83,7 +83,7 @@ export default class LeaderboardService {
     return sortedByPoints;
   };
 
-  static getLeaderboard = async () => {
+  static getLeaderboardHome = async () => {
     const teams = await TeamsModel.findAll();
     const matches = await MatchesService.getFinishedMatches();
 
