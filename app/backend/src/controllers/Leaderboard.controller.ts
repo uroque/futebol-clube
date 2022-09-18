@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 import LeaderboardService from '../services/Leaderboard.service';
 
 export default class LeaderboardController {
-  static getLeaderboard = async (_req: Request, res: Response, next: NextFunction) => {
+  static getLeaderboardHome = async (_req: Request, res: Response, next: NextFunction) => {
     try {
       const leaderboard = await LeaderboardService.getLeaderboard();
 
