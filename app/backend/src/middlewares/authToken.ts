@@ -4,8 +4,6 @@ import { verify, Secret } from 'jsonwebtoken';
 import { IRequest } from '../interfaces';
 
 const authToken = async (req: IRequest, res: Response, next: NextFunction) => {
-  console.log('chegay');
-
   try {
     const token = req.headers.authorization;
 
