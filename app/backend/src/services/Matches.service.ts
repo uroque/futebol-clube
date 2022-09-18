@@ -57,4 +57,14 @@ export default class MatchesService {
     );
     return updatedScore;
   };
+
+  static getFinishedMatches = async () => {
+    const finishedMatches = await MatchesModel.findAll(
+      {
+        where: { inProgress: false },
+      },
+    );
+
+    return finishedMatches;
+  };
 }
