@@ -21,4 +21,14 @@ export default class LeaderboardController {
       next(err);
     }
   };
+
+  static getLeaderboard = async (_req: Request, res: Response, next: NextFunction) => {
+    try {
+      const leaderboard = await LeaderboardService.getLeaderboard();
+
+      return res.status(200).json(leaderboard);
+    } catch (err) {
+      next(err);
+    }
+  };
 }
