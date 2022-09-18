@@ -12,15 +12,7 @@ chai.use(chaiHttp);
 const { expect } = chai;
 
 describe('Leaderboard', () => {
-  describe('getLeaderboard', () => {
-    // beforeEach(() => {
-    //   sinon.stub(MatchesModel, 'findAll').resolves([]);
-    // });
-
-    // afterEach(() => {
-    //   sinon.restore();
-    // });
-
+  describe('getLeaderboardHome', () => {
     it('should return status 200', async () => {
       const response = await chai.request(app)
         .get('/leaderboard/home');
@@ -30,7 +22,23 @@ describe('Leaderboard', () => {
 
     it('should return leaderboard', async () => {
       const response = await chai.request(app)
-        .get('/leaderboard');
+        .get('/leaderboard/home');
+
+      expect(response.body).to.be.deep.equal([]);  
+    })
+  })
+
+  describe('getLeaderboardAway', () => {
+    it('should return status 200', async () => {
+      const response = await chai.request(app)
+        .get('/leaderboard/away');
+
+      expect(response.status).to.be.equal(200);
+    })
+
+    it('should return leaderboard', async () => {
+      const response = await chai.request(app)
+        .get('/leaderboard/away');
 
       expect(response.body).to.be.deep.equal([]);  
     })
