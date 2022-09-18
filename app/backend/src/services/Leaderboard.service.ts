@@ -94,9 +94,28 @@ export default class LeaderboardService {
         .filter((match) => match.homeTeam === team.id)
         .map((match) => ({ goalsFavor: match.homeTeamGoals, goalsOwn: match.awayTeamGoals }));
 
-      const tableBoard = this.createLeaderboard(goalsResult, team.teamName);
+      const leaderboard = this.createLeaderboard(goalsResult, team.teamName);
 
-      results.push(tableBoard);
+      results.push(leaderboard);
+    });
+
+    return this.sortTable(results);
+  };
+
+  static getLeaderboardAway = async () => {
+    const teams = await TeamsModel.findAll();
+    const matches = await MatchesService.getFinishedMatches();
+
+    const results: ILeaderboardTeam[] = [];
+
+    teams.forEach((team) => {
+      const goalsResult = matches
+        .filter((match) => match.awayTeam === team.id)
+        .map((match) => ({ goalsFavor: match.awayTeamGoals, goalsOwn: match.homeTeamGoals }));
+
+      const leaderboard = this.createLeaderboard(goalsResult, team.teamName);
+
+      results.push(leaderboard);
     });
 
     return this.sortTable(results);
