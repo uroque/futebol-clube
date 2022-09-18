@@ -38,19 +38,4 @@ export default class TeamsService {
 
     return true;
   };
-
-  static getHomeTeamsFinishedMatches = async (): Promise<IHomeTeamMatches[]> => {
-    const finishedMatches = await TeamsModel.findAll(
-      {
-        include:
-          {
-            model: MatchesModel,
-            as: 'teamHome',
-            where: { inProgress: false },
-          },
-      },
-    );
-
-    return finishedMatches;
-  };
 }
