@@ -9,36 +9,33 @@ import Example from '../database/models/ExampleModel';
 import { Response } from 'superagent';
 import TeamsModel from '../database/models/Teams.model';
 
+
 chai.use(chaiHttp);
 
 const { expect } = chai;
 
 describe('Teams', () => {
   describe('getAll', () => {
-    it('should return status 200', async () => {
+    beforeEach(() => {
       sinon.stub(TeamsModel, 'findAll').resolves([]);
+    });
 
+    afterEach(() => {
+      sinon.restore();
+    })
+
+    it('should return status 200', async () => {
       const response = await chai.request(app)
         .get('/teams');
 
-      expect(response.status).to.be.equal(200);
-
-      sinon.restore();
+      expect(response.status).to.be.equal(200);      
     })
 
     it('should return teams', async () => {
-      sinon.stub(TeamsModel, 'findAll').resolves([]);
-
       const response = await chai.request(app)
         .get('/teams');
 
-      expect(response.body).to.be.deep.equal([]);  
-
-      sinon.restore();
+      expect(response.body).to.be.deep.equal([]);
     })
   })
-
-  it('Seu sub-teste', () => {
-    expect(false).to.be.eq(true);
-  });
 });
