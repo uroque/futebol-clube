@@ -1,6 +1,4 @@
 import TeamsModel from '../database/models/Teams.model';
-import MatchesModel from '../database/models/Matches.model';
-import { IHomeTeamMatches } from '../interfaces';
 
 export default class TeamsService {
   static getAll = async (): Promise<object> => {
