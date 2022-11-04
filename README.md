@@ -9,7 +9,7 @@ Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua cr
 - quais arquivos/pastas foram desenvolvidos pela Trybe.
 -->
 
-In this project I developed an API using Express.js. The front end was made available by trybe so the back end studies were accelerated! 
+In this project I developed an API to perform CRUD on football matches using Express.js. The front end was made available by trybe so the back end studies were accelerated! 
 
 Technologies used in this project:
 
