@@ -1,4 +1,4 @@
-# 🚧 README em construção 🚧
+# 🚧 README under construction 🚧
 <!-- Olá, Tryber!
 Esse é apenas um arquivo inicial para o README do seu projeto.
 É essencial que você preencha esse documento por conta própria, ok?
@@ -9,4 +9,4 @@ Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua cr
 - quais arquivos/pastas foram desenvolvidos pela Trybe.
 -->
 
-Nesse projeto desenvolvi o back end utilizando Node.js. O front end foi disponibilizado pela trybe para os estudos de back end fossem acelerados!
+In this project I developed the back end using Node.js. The front end was made available by trybe so the back end studies were accelerated!
